@@ -180,6 +180,7 @@ const ContentZodSchema = z.discriminatedUnion("type", [
 ]) satisfies z.ZodType<Content>;
 
 type ContentResult = {
+  toolResult?: unknown;
   content: Content[];
   isError?: boolean;
 };
@@ -188,6 +189,7 @@ const ContentResultZodSchema = z
   .object({
     content: ContentZodSchema.array(),
     isError: z.boolean().optional(),
+    toolResult: z.unknown().optional(),
   })
   .strict() satisfies z.ZodType<ContentResult>;
 
